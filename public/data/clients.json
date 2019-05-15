@@ -1,0 +1,290 @@
+[
+  {
+     "id": "126",
+     "name": "ABRA Auto Body",
+     "code": "ABR",
+     "show": 1
+  },
+  {
+     "id": "110",
+     "name": "American Girl",
+     "code": "AMG",
+     "show": 1
+  },
+  {
+     "id": "127",
+     "name": "At Home",
+     "code": "ATH",
+     "show": 1
+  },
+  {
+     "id": "130",
+     "name": "Athleta",
+     "code": "ATL",
+     "show": 1
+  },
+  {
+     "id": "129",
+     "name": "Banana Republic",
+     "code": "BNR",
+     "show": 1
+  },
+  {
+     "id": "120",
+     "name": "Barnes and Noble",
+     "code": "BNL",
+     "show": 1
+  },
+  {
+     "id": "63",
+     "name": "Best Buy",
+     "code": "BBY",
+     "show": 1
+  },
+  {
+     "id": "121",
+     "name": "BJ's Warehouse",
+     "code": "BJW",
+     "show": 1
+  },
+  {
+     "id": "111",
+     "name": "Byrne Dairy",
+     "code": "BYD",
+     "show": 1
+  },
+  {
+     "id": "57",
+     "name": "C2 Imaging",
+     "code": "C2I",
+     "show": 1
+  },
+  {
+     "id": "68",
+     "name": "Charley's",
+     "code": "CHA",
+     "show": 1
+  },
+  {
+     "id": "107",
+     "name": "Choice Hotels International",
+     "code": "CHI",
+     "show": 1
+  },
+  {
+     "id": "104",
+     "name": "CIS",
+     "code": "CIS",
+     "show": 1
+  },
+  {
+     "id": "117",
+     "name": "Concordia College",
+     "code": "CON",
+     "show": 1
+  },
+  {
+     "id": "66",
+     "name": "Corporate",
+    "code":  "PRAVOM",
+     "show": 1
+  },
+  {
+     "id": "23",
+     "name": "CVS",
+     "code": "CVS",
+     "show": 1
+  },
+  {
+     "id": "118",
+     "name": "Dollar Express",
+     "code": "DEX",
+     "show": 1
+  },
+  {
+     "id": "125",
+     "name": "Elk Grove Graphics",
+     "code": "EGG",
+     "show": 1
+  },
+  {
+     "id": "45",
+     "name": "Family Dollar",
+     "code": "FAM",
+     "show": 1
+  },
+  {
+     "id": "37",
+     "name": "Food Lion",
+     "code": "FDL",
+     "show": 1
+  },
+  {
+     "id": "65",
+     "name": "Fusion",
+     "code": "FUS",
+     "show": 1
+  },
+  {
+     "id": "116",
+     "name": "Gander Mountain",
+     "code": "GAN",
+     "show": 1
+  },
+  {
+     "id": "87",
+     "name": "GAP",
+     "code": "GAP",
+     "show": 1
+  },
+  {
+     "id": "55",
+     "name": "Harbor Graphics",
+     "code": "HAR02",
+     "show": 1
+  },
+  {
+     "id": "115",
+     "name": "K&G - Men's Warehouse",
+     "code": "KG",
+     "show": 1
+  },
+  {
+     "id": "105",
+     "name": "Kraft",
+     "code": "KFT",
+     "show": 1
+  },
+  {
+     "id": "113",
+     "name": "Kwik Trip ",
+     "code": "KWT",
+     "show": 1
+  },
+  {
+     "id": "2",
+     "name": "Lowe's",
+     "code": "LOW01",
+     "show": 1
+  },
+  {
+     "id": "108",
+     "name": "Lunds & Byerlys",
+     "code": "LUN",
+     "show": 1
+  },
+  {
+     "id": "123",
+     "name": "Master Print",
+     "code": "MSP",
+     "show": 1
+  },
+  {
+     "id": "26",
+     "name": "Miscellaneous",
+     "code": "MISC",
+     "show": 1
+  },
+  {
+     "id": "124",
+     "name": "NDSU - North Dakota State University",
+     "code": "NDSU",
+     "show": 1
+  },
+  {
+     "id": "47",
+     "name": "OfficeMax",
+     "code": "OMX",
+     "show": 1
+  },
+  {
+     "id": "97",
+     "name": "Old Navy",
+     "code": "OLN",
+     "show": 1
+  },
+  {
+     "id": "119",
+     "name": "Petco",
+     "code": "PCO",
+     "show": 1
+  },
+  {
+     "id": "131",
+     "name": "PetSmart",
+     "code": "PTS",
+     "show": 1
+  },
+  {
+     "id": "14",
+     "name": "PGA Superstore",
+     "code": "PGA",
+     "show": 1
+  },
+  {
+     "id": "4",
+     "name": "Pratt",
+     "code": "PRA",
+     "show": 1
+  },
+  {
+     "id": "122",
+     "name": "Rite Aid",
+     "code": "RTA",
+     "show": 1
+  },
+  {
+     "id": "128",
+     "name": "Rolls Royce",
+     "code": "RR",
+     "show": 1
+  },
+  {
+     "id": "106",
+     "name": "Superior Imaging",
+     "code": "SUP",
+     "show": 1
+  },
+  {
+     "id": "85",
+     "name": "Target",
+     "code": "TAR",
+     "show": 1
+  },
+  {
+     "id": "81",
+     "name": "TheBureau",
+     "code": "BUR",
+     "show": 1
+  },
+  {
+     "id": "99",
+     "name": "ULTA",
+     "code": "ULT",
+     "show": 1
+  },
+  {
+     "id": "41",
+     "name": "Vomela",
+     "code": "VOM",
+     "show": 1
+  },
+  {
+     "id": "75",
+     "name": "Vomela Marketing",
+     "code": "VOM-MKT",
+     "show": 1
+  },
+  {
+     "id": "83",
+     "name": "Walgreens",
+     "code": "WLG",
+     "show": 1
+  },
+  {
+     "id": "112",
+     "name": "Wegmans",
+     "code": "WEG",
+     "show": 1
+  }
+]
