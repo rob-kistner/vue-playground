@@ -93,8 +93,8 @@ import moment from 'moment'
 
 // globals
 const fmt = 'h:mm A'
-const hours = 1
-const minutes = 15
+const hoursToCalc = 1
+const minutesToCalc = 15
 const reservedFieldNames = ['startHours', 'startMins', 'startAmPm', 'endHours', 'endMins', 'endAmPm']
 
 export default {
@@ -193,21 +193,25 @@ export default {
       this[whichTime] = moment(this[whichTime], fmt).add(12, 'hours')
     },
     addHours(whichTime) {
-      this[whichTime] = moment(this[whichTime], fmt).add(hours, 'hours')
+      if ((moment(this[whichTime], fmt).hours() + hoursToCalc) < 24)
+        this[whichTime] = moment(this[whichTime], fmt).add(hoursToCalc, 'hours')
     },
     subtractHours(whichTime) {
-      this[whichTime] = moment(this[whichTime], fmt).subtract(hours, 'hours')
+      if (!(moment(this[whichTime], fmt).hours() - hoursToCalc) <= 0)
+        this[whichTime] = moment(this[whichTime], fmt).subtract(hoursToCalc, 'hours')
     },
     addMinutes(whichTime) {
-      this[whichTime]= moment(this[whichTime], fmt).add(minutes, 'minutes')
+      if (!(moment(this[whichTime], fmt).hours() === 23) && 
+          !(moment(this[whichTime], fmt).minutes() === 45))
+      this[whichTime] = moment(this[whichTime], fmt).add(minutesToCalc, 'minutes')
     },
     subtractMinutes(whichTime)  {
-      this[whichTime] = moment(this[whichTime], fmt).subtract(minutes, 'minutes')
+      if (!(moment(this[whichTime], fmt).hours() === 1) && 
+          !(moment(this[whichTime], fmt).minutes() === 0))
+      this[whichTime] = moment(this[whichTime], fmt).subtract(minutesToCalc, 'minutes')
     },
     timesAreValid() {
-      let start = moment(this.startTime)
-      let end = moment(this.endTime)
-      return end.diff(start, 'minutes') >= 0 
+      return moment(this.endTime).diff(moment(this.startTime), 'minutes') >= 0 
     }
   },
   mounted() {
