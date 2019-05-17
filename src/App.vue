@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="section">
     <div class="container">
-      <start-end-times></start-end-times>
+      <start-end-times startTimeFieldName="fldStartTime"></start-end-times>
     </div>
   </div>
 </template>

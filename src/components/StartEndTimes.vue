@@ -1,84 +1,195 @@
 <template>
   <div>
-    <div class="start-time">
-      <input type="number"
-        id="start-time-hr"
-        name="start-time-hr"
-        class="input time"
-        @input="handleHour"
-        :value="starttime.hour"
-        >
-      <input type="number"
-        id="start-time-min"
-        name="start-time-min"
-        min="0"
-        max="45"
-        step="15"
-        class="input time"
-        @keyup="handleMinutes"
-        :value="starttime.minutes"
+    <label class="label">Start Time</label>
+    <div class="time-display start-time">
+      <input
+        type="text"
+        id="startHours"
+        name="startHours"
+        class="input-time hrs"
+        :value="startTimeHours"
+        @keyup="handleHours"
+        @click="handleHours"
         readonly
         >
-      <input type="button"
-        id="start-time-ampm"
-        name="start-time-ampm"
-        class="button ampm"
-        @click.prevent="handleAMPMClick"
-        @keypress.prevent="handleAMPMKeys"
-        :value="starttime.ampm"
+      <span class="colon">:</span>
+      <input
+        type="text"
+        id="startMins"
+        name="startMins"
+        class="input-time mins"
+        :value="startTimeMinutes"
+        @keyup="handleMinutes"
+        @click="handleMinutes"
+        readonly
+        >
+      <input
+        type="text"
+        id="startAmPm"
+        name="startAmPm"
+        class="input-time ampm"
+        :value="startTimeAmPm"
+        readonly
+        @click="cyclePeriod('startTime')"
+        @keyup.up="cyclePeriod('startTime')"
+        @keyup.down="cyclePeriod('startTime')"
+        >
+      
+      <input
+        type="hidden"
+        :id="startTimeFieldName"
+        :name="startTimeFieldName"
+        :value="startTimeFormatted"
         >
     </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
+import moment from 'moment'
+
+// globals
+const fmt = 'h:mm A'
+const hours = 1
+const minutes = 15
+const reservedFieldNames = ['startHours', 'startMins', 'startAmPm', 'endHours', 'endMins', 'endAmPm']
+
 export default {
+  name: 'StartEndTimes',
   data() {
     return {
-      starttime: {
-        hour: '9',
-        minutes: '00',
-        ampm: 'AM'
-      },
-      endtime: {
-        hour: '9',
-        minute: '00',
-        ampm: 'AM'
-      },
-      legitMinutes: [0, 15, 30, 45]
+      startTime: '09:00 am',
+      endTime: '09:30 am'
     }
   },
+  props: {
+    startTimeFieldName: {
+      default: 'start_time',
+      format: String,
+      validator: value => {
+
+        return value !== ''
+      }
+    },
+    endTimeFieldName: {
+      default: 'end_time',
+      format: String
+    },
+
+  },
+  computed: {
+    startTimeHours() {
+      return moment(this.startTime, fmt).format('h')
+    },
+    startTimeMinutes() {
+      return moment(this.startTime, fmt).format('mm')
+    },
+    startTimeAmPm() {
+      return moment(this.startTime, fmt).format('a')
+    },
+    startTimeFormatted() {
+      return moment(this.startTime, fmt).format('h:mm a')
+    },
+  },
   methods: {
-    handleHour(e) {
-      // console.log(e)
+    handleHours(e) {
+      if (e.key) {
+        if (e.key==='ArrowUp') {
+          this.addHours()
+        } else if (e.key==='ArrowDown') {
+          this.subtractHours()
+        }
+      } else if (e.type==='click') {
+        this.addHours()
+      }
     },
     handleMinutes(e) {
-      console.log(e.key)
-      // if(e.target.value === '0') e.target.value = '00'
-      // if(!this.legitMinutes.includes(parseInt(e.target.value))) {
-      //   e.target.value == '00'
-      // }
+      if (e.key) {
+        if (e.key==='ArrowUp') {
+          this.addMinutes()
+        } else if (e.key==='ArrowDown') {
+          this.subtractMinutes()
+        }
+      } else if (e.type==='click') {
+        this.addMinutes()
+      }
     },
-    handleAMPMClick(e) {
-      console.log(e)
+    cyclePeriod(whichTime) {
+      this[whichTime] = moment(this[whichTime], fmt).add(12, 'hours')
     },
-    handleAMPMKeys(e) {
-      console.log(e)
-    }
+    addHours(e) {
+      this.startTime = moment(this.startTime, fmt).add(hours, 'hours')
+    },
+    subtractHours(e) {
+      this.startTime = moment(this.startTime, fmt).subtract(hours, 'hours')
+    },
+    addMinutes(e) {
+      this.startTime = moment(this.startTime, fmt).add(minutes, 'minutes')
+    },
+    subtractMinutes(e) {
+      this.startTime = moment(this.startTime, fmt).subtract(minutes, 'minutes')
+    },
   }
 }
 </script>
 
-<style>
-.start-time {
-  display: flex;
-  max-width: 50%;
+<style scoped lang="scss">
+
+$tvc-ltblue: #00aeef;
+$tvc-blue: #004b98;
+$field-border: #aaa;
+$input-focus-text: $tvc-blue;
+
+.time-display {
+  display: inline-flex;
+  border: 1px solid $field-border;
+  padding: 0 0.875rem;
+  border-radius: 4px;
 }
-.time {
-  flex: 2 0;
+
+.input-time {
+  border: 0;
+  padding: 0.5rem 0.125rem;
+  text-align: center;
+  max-width: 1.75rem;
+  font-size: 1rem;
+  background-color: transparent;
+  -webkit-user-select: none;
+  cursor: pointer;
+  &.hrs {
+    text-align: center; // right
+  }
+  &.mins {
+    text-align: center; // left
+  }
+  &:focus {
+    font-weight: 700;
+    outline: 0;
+    color: $input-focus-text;
+    -webkit-user-select: none;
+    user-select: none;
+    border-top: solid 2px $tvc-ltblue;
+    border-bottom: solid 2px $tvc-ltblue;
+  }
+}
+
+.colon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 0.5rem;
   text-align: center;
 }
-.ampm {
-  flex: 1 0;
+
+.time-button {
+  background-color: transparent;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 3px;
+  &:hover {
+    background-color: #eaeaea;
+  }
 }
 </style>
