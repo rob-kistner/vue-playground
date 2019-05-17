@@ -1,47 +1,89 @@
 <template>
-  <div>
-    <label class="label">Start Time</label>
-    <div class="time-display start-time">
-      <input
-        type="text"
-        id="startHours"
-        name="startHours"
-        class="input-time hrs"
-        :value="startTimeHours"
-        @keyup="handleHours"
-        @click="handleHours"
-        readonly
-        >
-      <span class="colon">:</span>
-      <input
-        type="text"
-        id="startMins"
-        name="startMins"
-        class="input-time mins"
-        :value="startTimeMinutes"
-        @keyup="handleMinutes"
-        @click="handleMinutes"
-        readonly
-        >
-      <input
-        type="text"
-        id="startAmPm"
-        name="startAmPm"
-        class="input-time ampm"
-        :value="startTimeAmPm"
-        readonly
-        @click="cyclePeriod('startTime')"
-        @keyup.up="cyclePeriod('startTime')"
-        @keyup.down="cyclePeriod('startTime')"
-        >
-      
-      <input
-        type="hidden"
-        :id="startTimeFieldName"
-        :name="startTimeFieldName"
-        :value="startTimeFormatted"
-        >
+  <div class="start-end-times">
+
+    <div class="field">
+      <label class="label">Start Time</label>
+      <div class="control time-display start-time">
+        <input type="text" id="startHours" name="startHours" class="input-time hrs"
+          :value="startTimeHours"
+          readonly
+          @keyup="handleHours($event, 'startTime')"
+          @click="handleHours($event, 'startTime')"
+          >
+        <span class="colon">:</span>
+        <input type="text" id="startMins" name="startMins" class="input-time mins"
+          :value="startTimeMinutes"
+          readonly
+          @keyup="handleMinutes($event, 'startTime')"
+          @click="handleMinutes($event, 'startTime')"
+          >
+        <input type="text" id="startAmPm" name="startAmPm" class="input-time ampm"
+          :value="startTimeAmPm"
+          readonly
+          @click="cyclePeriod('startTime')"
+          @keyup.up="cyclePeriod('startTime')"
+          @keyup.down="cyclePeriod('startTime')"
+          >
+        
+        <input
+          type="hidden"
+          :id="startTimeFieldName"
+          :name="startTimeFieldName"
+          :value="startTimeFormatted"
+          >
+      </div>
     </div>
+
+    <div class="field">
+      <label class="label">End Time</label>
+      <div class="control time-display end-time">
+        <input type="text" id="endHours" name="endHours" class="input-time hrs"
+          :value="endTimeHours"
+          readonly
+          @keyup="handleHours($event, 'endTime')"
+          @click="handleHours($event, 'endTime')"
+          >
+        <span class="colon">:</span>
+        <input type="text" id="endMins" name="endMins" class="input-time mins"
+          :value="endTimeMinutes"
+          readonly
+          @keyup="handleMinutes($event, 'endTime')"
+          @click="handleMinutes($event, 'endTime')"
+          >
+        <input type="text" id="endAmPm" name="endAmPm" class="input-time ampm"
+          :value="endTimeAmPm"
+          readonly
+          @click="cyclePeriod('endTime')"
+          @keyup.up="cyclePeriod('endTime')"
+          @keyup.down="cyclePeriod('endTime')"
+          >
+        
+        <input
+          type="hidden"
+          :id="endTimeFieldName"
+          :name="endTimeFieldName"
+          :value="endTimeFormatted"
+          >
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Total Time</label>
+      <div class="control">
+        <input type="text" id="endHours" name="endHours" class="input is-static total-time"
+          :value="totalTimeFormatted"
+          readonly
+          tabindex="-1"
+          >
+        <input
+          type="hidden"
+          :id="totalTimeFieldName"
+          :name="totalTimeFieldName"
+          :value="totalTime"
+          >
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -59,24 +101,28 @@ export default {
   name: 'StartEndTimes',
   data() {
     return {
-      startTime: '09:00 am',
-      endTime: '09:30 am'
+      startTime: '',
+      endTime: ''
     }
   },
   props: {
     startTimeFieldName: {
       default: 'start_time',
-      format: String,
-      validator: value => {
-
-        return value !== ''
-      }
+      format: String
     },
     endTimeFieldName: {
       default: 'end_time',
       format: String
     },
-
+    totalTimeFieldName: {
+      default: 'total_time'
+    },
+    defaultStartTime: {
+      default: '9:00 AM'
+    },
+    defaultEndTime: {
+      default: '9:30 AM'
+    },
   },
   computed: {
     startTimeHours() {
@@ -91,45 +137,82 @@ export default {
     startTimeFormatted() {
       return moment(this.startTime, fmt).format('h:mm a')
     },
+    endTimeHours() {
+      return moment(this.endTime, fmt).format('h')
+    },
+    endTimeMinutes() {
+      return moment(this.endTime, fmt).format('mm')
+    },
+    endTimeAmPm() {
+      return moment(this.endTime, fmt).format('a')
+    },
+    endTimeFormatted() {
+      return moment(this.endTime, fmt).format('h:mm a')
+    },
+    totalTime() {
+      let start = moment(this.startTime)
+      let end = moment(this.endTime)
+      return end.diff(start, 'minutes') / 60
+    },
+    totalTimeFormatted() {
+      return this.totalTime + (this.totalTime <= 1 ? ' hr' : ' hrs')
+    },
+  },
+  watch: {
+    startTime: function() {
+      if (!this.timesAreValid()) this.endTime = this.startTime
+    },
+    endTime: function() {
+      if (!this.timesAreValid()) this.endTime = this.startTime
+    },
   },
   methods: {
-    handleHours(e) {
+    handleHours(e, whichTime) {
       if (e.key) {
         if (e.key==='ArrowUp') {
-          this.addHours()
+          this.addHours(whichTime)
         } else if (e.key==='ArrowDown') {
-          this.subtractHours()
+          this.subtractHours(whichTime)
         }
       } else if (e.type==='click') {
-        this.addHours()
+        this.addHours(whichTime)
       }
     },
-    handleMinutes(e) {
+    handleMinutes(e, whichTime) {
       if (e.key) {
         if (e.key==='ArrowUp') {
-          this.addMinutes()
+          this.addMinutes(whichTime)
         } else if (e.key==='ArrowDown') {
-          this.subtractMinutes()
+          this.subtractMinutes(whichTime)
         }
       } else if (e.type==='click') {
-        this.addMinutes()
+        this.addMinutes(whichTime)
       }
     },
     cyclePeriod(whichTime) {
       this[whichTime] = moment(this[whichTime], fmt).add(12, 'hours')
     },
-    addHours(e) {
-      this.startTime = moment(this.startTime, fmt).add(hours, 'hours')
+    addHours(whichTime) {
+      this[whichTime] = moment(this[whichTime], fmt).add(hours, 'hours')
     },
-    subtractHours(e) {
-      this.startTime = moment(this.startTime, fmt).subtract(hours, 'hours')
+    subtractHours(whichTime) {
+      this[whichTime] = moment(this[whichTime], fmt).subtract(hours, 'hours')
     },
-    addMinutes(e) {
-      this.startTime = moment(this.startTime, fmt).add(minutes, 'minutes')
+    addMinutes(whichTime) {
+      this[whichTime]= moment(this[whichTime], fmt).add(minutes, 'minutes')
     },
-    subtractMinutes(e) {
-      this.startTime = moment(this.startTime, fmt).subtract(minutes, 'minutes')
+    subtractMinutes(whichTime)  {
+      this[whichTime] = moment(this[whichTime], fmt).subtract(minutes, 'minutes')
     },
+    timesAreValid() {
+      let start = moment(this.startTime)
+      let end = moment(this.endTime)
+      return end.diff(start, 'minutes') >= 0 
+    }
+  },
+  mounted() {
+    this.startTime = moment(this.defaultStartTime, fmt)
+    this.endTime = moment(this.defaultEndTime, fmt)
   }
 }
 </script>
@@ -138,23 +221,39 @@ export default {
 
 $tvc-ltblue: #00aeef;
 $tvc-blue: #004b98;
-$field-border: #aaa;
+$field-border: #dbdbdb;
 $input-focus-text: $tvc-blue;
+$input-text-color: #363636;
 
+// component wrapper
+.start-end-times {
+  display: flex;
+
+  & .field {
+    padding-right: 1rem;
+  }
+}
+
+// wrapper field, imitates bulma standard text input field
 .time-display {
   display: inline-flex;
   border: 1px solid $field-border;
   padding: 0 0.875rem;
   border-radius: 4px;
+  box-shadow: inset 0 1px 2px rgba(10,10,10,0.1);
 }
 
+// text inputs within display field
 .input-time {
   border: 0;
-  padding: 0.5rem 0.125rem;
+  padding: 0.25rem 0.125rem;
   text-align: center;
   max-width: 1.75rem;
   font-size: 1rem;
+  color: $input-text-color;
   background-color: transparent;
+  border-top: solid 2px transparent;
+  border-bottom: solid 2px transparent;
   -webkit-user-select: none;
   cursor: pointer;
   &.hrs {
@@ -169,27 +268,21 @@ $input-focus-text: $tvc-blue;
     color: $input-focus-text;
     -webkit-user-select: none;
     user-select: none;
-    border-top: solid 2px $tvc-ltblue;
-    border-bottom: solid 2px $tvc-ltblue;
+    border-color: $tvc-ltblue;
   }
 }
 
+// calculated total time
+.total-time {
+
+}
+
+// time component separator
 .colon {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 0.5rem;
   text-align: center;
-}
-
-.time-button {
-  background-color: transparent;
-  border: none;
-  outline: 0;
-  cursor: pointer;
-  border-radius: 3px;
-  &:hover {
-    background-color: #eaeaea;
-  }
 }
 </style>
