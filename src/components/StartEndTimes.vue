@@ -189,6 +189,8 @@ export default {
         this.addMinutes(whichTime)
       }
     },
+    // @todo: this is just rolling over the days
+    //        need to calculate within the same day
     cyclePeriod(whichTime) {
       this[whichTime] = moment(this[whichTime], fmt).add(12, 'hours')
     },
