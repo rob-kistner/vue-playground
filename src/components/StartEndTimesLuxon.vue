@@ -104,12 +104,11 @@
 </template>
 
 <script>
-/* es-lint-disable */
 import { DateTime } from 'luxon'
 
 // local constants
 const MAX_HOURS = 23 // 11 pm
-const MIN_HOURS = 0 // 12 am
+const MIN_HOURS = 0  // 12 am
 const MAX_MINUTES = (23 * 60) + 45 // 11:45 pm
 const MIN_MINUTES = 0 // 12 am
 const DATE_FULL = 'yyyy-MM-dd h:mm a' // entire date format
@@ -237,7 +236,7 @@ export default {
       let end = DateTime.fromISO(this.endTime)
       return end.diff(start, 'hours')
         .toObject()
-        .hours >= 0
+        .hours >= MIN_HOURS
     },
     // update hours
     handleHours(e, whichTime) {
@@ -264,7 +263,6 @@ export default {
     },
   }
 }
-
 </script>
 
 <style scoped lang="scss">
@@ -304,7 +302,11 @@ $input-text-color: #363636;
   background-color: transparent;
   border-top: solid 2px transparent;
   border-bottom: solid 2px transparent;
+  user-select: none;
   -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   cursor: pointer;
   &.hrs {
     text-align: center; // right
