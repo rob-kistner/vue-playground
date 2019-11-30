@@ -1,24 +1,11 @@
 <template>
-  <div id="app" class="section">
-    <div class="container">
-      <form>
-        <div class="field">
-          <label class="label">Test Field</label>
-          <div class="control">
-            <input type="text" class="input" placeholder="placeholder text">
-          </div>
-        </div>
-        <start-end-times-luxon />
-        <number-input name="mynum" />
-      </form>
-    </div>
+  <div id="app">
+    <TimeInput />
   </div>
 </template>
 
 <script>
-// import StartEndTimes from './components/StartEndTimes'
-import StartEndTimesLuxon from './components/StartEndTimesLuxon'
-import NumberInput from './components/NumberInput'
+import TimeInput from './components/TimeInput'
 
 export default {
   name: "app",
@@ -26,8 +13,7 @@ export default {
     return {}
   },
   components: {
-    StartEndTimesLuxon,
-    NumberInput
+    TimeInput
   }
 }
 </script>

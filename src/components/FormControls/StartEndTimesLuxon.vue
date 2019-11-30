@@ -134,7 +134,7 @@ export default {
     endTimeFieldName   : { default: 'end_time' },
     totalTimeFieldName : { default: 'total_time' },
     startTimeValue     : { default: '9:00 am' },
-    endTimeValue       : { default: '9:30 am' },
+    endTimeValue       : { default: '10:30 am' },
     entryDateValue     : { default: DateTime.local().toFormat(DATE_ONLY) }
   },
   mounted() {
