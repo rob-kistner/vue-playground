@@ -8,6 +8,7 @@
         :id="name" 
         :step="step"
         :value="value"
+        @keydown="handleKeyDown"
         @input="changeNumber"
         >
     </div>
@@ -19,7 +20,7 @@ export default {
   name: 'NumberInput',
   data() {
     return {
-      
+
     }
   },
   props: {
@@ -43,7 +44,11 @@ export default {
     }
   },
   methods: {
+    handleKeyDown(e) {
+      if (e.key === 'e') e.preventDefault()
+    },
     changeNumber(e) {
+      e.preventDefault()
       if(parseInt(e.target.value) < this.min) {
         e.target.value = this.min
       } else if(parseInt(e.target.value) > this.max) {
@@ -56,7 +61,7 @@ export default {
 
 <style lang="scss" scoped>
   .field {
-    width: 2.5rem;
+    width: 3rem;
 
     & input {
       &::-webkit-inner-spin-button,

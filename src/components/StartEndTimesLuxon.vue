@@ -104,6 +104,13 @@
 </template>
 
 <script>
+/* ----------------------------------------
+  USAGE:
+  ----------------------------------------
+    <start-end-times-luxon></start-end-times-luxon>
+      or
+    <start-end-times-luxon />
+---------------------------------------- */
 import { DateTime } from 'luxon'
 
 // local constants
@@ -286,6 +293,7 @@ $input-text-color: #363636;
 .time-display {
   display: inline-flex;
   border: 1px solid $field-border;
+  background-color: #fff;
   padding: 0 0.875rem;
   border-radius: 4px;
   box-shadow: inset 0 1px 2px rgba(10,10,10,0.1);
@@ -318,8 +326,11 @@ $input-text-color: #363636;
     font-weight: 700;
     outline: 0;
     color: $input-focus-text;
-    -webkit-user-select: none;
     user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     border-color: $tvc-ltblue;
   }
 }

@@ -8,8 +8,8 @@
             <input type="text" class="input" placeholder="placeholder text">
           </div>
         </div>
-        <start-end-times-luxon>
-        </start-end-times-luxon>
+        <start-end-times-luxon />
+        <number-input name="mynum" />
       </form>
     </div>
   </div>
@@ -18,6 +18,7 @@
 <script>
 // import StartEndTimes from './components/StartEndTimes'
 import StartEndTimesLuxon from './components/StartEndTimesLuxon'
+import NumberInput from './components/NumberInput'
 
 export default {
   name: "app",
@@ -25,8 +26,8 @@ export default {
     return {}
   },
   components: {
-    // StartEndTimes,
     StartEndTimesLuxon,
+    NumberInput
   }
 }
 </script>
