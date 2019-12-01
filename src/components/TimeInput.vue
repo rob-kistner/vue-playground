@@ -3,12 +3,12 @@
     <div class="container">
       <form>
         <div class="field">
-          <label class="label">Test Field</label>
+          <label class="label">Test TextField</label>
           <div class="control">
             <input type="text" class="input" placeholder="placeholder text">
           </div>
         </div>
-        <start-end-times-luxon />
+        <start-end-times />
         <number-input name="mynum" />
       </form>
     </div>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import StartEndTimesLuxon from './FormControls/StartEndTimesLuxon'
+import StartEndTimes from './FormControls/StartEndTimesLuxon'
 import NumberInput from './FormControls/NumberInput'
 
 export default {
@@ -25,7 +25,7 @@ export default {
     return {}
   },
   components: {
-    StartEndTimesLuxon,
+    StartEndTimes,
     NumberInput
   }
 }

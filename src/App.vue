@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div class="main has-background-light">
     <TimeInput />
   </div>
 </template>
@@ -18,6 +18,12 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
   
+  @import url('https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css');
+
+  .main {
+    height: 100vh;
+  }
+
 </style>

@@ -6,6 +6,7 @@
       <div class="control time-display start-time">
         <input type="text"
           id="startHours"
+          ref="startHours"
           name="startHours"
           class="input-time hrs"
           :value="startHour"
@@ -16,6 +17,7 @@
         <span class="colon">:</span>
         <input type="text"
           id="startMins"
+          ref="startMins"
           name="startMins"
           class="input-time mins"
           :value="startMinutes"
@@ -25,13 +27,13 @@
         >
         <input type="text"
           id="startAmPm"
+          ref="startAmPm"
           name="startAmPm" 
           class="input-time ampm"
           :value="startAmPm"
           readonly
-          @click="switchMeridien('startTime')"
-          @keyup.up="switchMeridien('startTime')"
-          @keyup.down="switchMeridien('startTime')"
+          @keyup="handleAmPm($event, 'startTime')"
+          @click="handleAmPm($event, 'startTime')"
         >
         <input type="hidden"
           :id="startTimeFieldName"
@@ -46,6 +48,7 @@
       <div class="control time-display end-time">
         <input type="text"
           id="endHours"
+          ref="endHours"
           name="endHours"
           class="input-time hrs"
           :value="endHour"
@@ -56,6 +59,7 @@
         <span class="colon">:</span>
         <input type="text"
           id="endMins"
+          ref="endMins"
           name="endMins"
           class="input-time mins"
           :value="endMinutes"
@@ -65,13 +69,13 @@
         >
         <input type="text"
           id="endAmPm"
+          ref="endAmPm"
           name="endAmPm"
           class="input-time ampm"
           :value="endAmPm"
           readonly
-          @click="switchMeridien('endTime')"
-          @keyup.up="switchMeridien('endTime')"
-          @keyup.down="switchMeridien('endTime')"
+          @keyup="handleAmPm($event, 'endTime')"
+          @click="handleAmPm($event, 'endTime')"
         >
         <input type="hidden"
           :id="endTimeFieldName"
@@ -228,7 +232,8 @@ export default {
     // swap AM & PM time
     // @returns DateTime obj
     switchMeridien( whichTime ) {
-      let tmp;
+      console.log(whichTime)
+      let tmp
       if ((this[whichTime].hour + 12) > MAX_HOURS) {
         tmp = this[whichTime].minus({ hours: 12 })
       } else {
@@ -252,6 +257,12 @@ export default {
           this.addHours(whichTime)
         } else if (e.key==='ArrowDown') {
           this.minusHours(whichTime)
+        } else if (e.key==='ArrowRight') {
+          // TODO: Focus next available field with left & right arrows
+          // console.log(this.$refs)
+        } else if (e.key==='ArrowLeft') {
+          // TODO: Focus next available field with left & right arrows
+          // console.log(this.$refs)
         }
       } else if (e.type==='click') {
         this.addHours(whichTime)
@@ -263,11 +274,30 @@ export default {
           this.addMinutes(whichTime)
         } else if (e.key==='ArrowDown') {
           this.minusMinutes(whichTime)
+        } else if (e.key==='ArrowRight') {
+          // TODO: Focus next available field with left & right arrows
+          // console.log(this.$refs)
+        } else if (e.key==='ArrowLeft') {
+          // TODO: Focus next available field with left & right arrows
+          console.log(this.$refs)
         }
       } else if (e.type==='click') {
         this.addMinutes(whichTime)
       }
     },
+    handleAmPm(e, whichTime) {
+      if (e.key) {
+        if (e.key==='ArrowUp' || e.key==='ArrowDown') {
+          this.switchMeridien(whichTime)
+        } else if (e.key==='ArrowRight') {
+          console.log(this.$refs)
+        } else if (e.key==='ArrowLeft') {
+          console.log(this.$refs)
+        }
+      } else if (e.type==='click') {
+        this.switchMeridien(whichTime)
+      }
+    }
   }
 }
 </script>
