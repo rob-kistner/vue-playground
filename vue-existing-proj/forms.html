@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJS Playground | Existing App | Forms</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  </head>
+
+  <body class="content">
+
+    <section id="app" class="container section">
+
+      <text-input id="client_name" label="Client Name" placeholder="Client name" model="clientName" />
+      <p>Text under the input field</p>
+
+    </section>
+
+    <script type="text/x-template" id="text-input">
+      <div>
+        <div class="field-label is-normal">
+          <label class="label" :for="id">{{label}}</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control">
+              <input type="text" class="input" :name="id" :id="id" :placeholder="placeholder" :v-model="model" @change="changeHandler">
+            </div>
+            <small v-if="errormsg !== ''">{{errormsg}}</small>
+          </div>
+        </div>
+      </div>
+    </script>
+
+    <script src="./js/forms.js"></script>
+
+  </body>
+</html>
