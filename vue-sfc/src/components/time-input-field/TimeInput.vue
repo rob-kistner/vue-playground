@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import StartEndTimes from './FormControls/StartEndTimesLuxon'
-import NumberInput from './FormControls/NumberInput'
+import StartEndTimes from './StartEndTimesLuxon'
+import NumberInput from './NumberInput'
 
 export default {
   name: "app",

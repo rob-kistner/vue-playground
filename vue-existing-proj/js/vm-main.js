@@ -19,7 +19,7 @@ Vue.component('greeting',
     }
   },
   created() {
-    axios.get('./js/data/testdata.json')
+    axios.get('./data/testdata.json')
       .then(res => this.myData = res.data)
   }
 })

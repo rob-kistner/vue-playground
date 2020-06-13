@@ -89,8 +89,8 @@
       <label class="label">Total Time</label>
       <div class="control">
         <input type="text"
-          id="endHours"
-          name="endHours"
+          id="totalTime"
+          name="totalTime"
           class="input is-static total-time"
           :value="totalTimeFormatted"
           readonly
@@ -130,7 +130,8 @@ export default {
   data() {
     return {
       startTime: '',
-      endTime: ''
+      endTime: '',
+      fields: []
     }
   },
   props: {
@@ -144,6 +145,7 @@ export default {
   mounted() {
     this.startTime = this.setDateTime( this.startTimeValue )
     this.endTime = this.setDateTime( this.endTimeValue )
+    this.fields = Object.keys(this.$refs)
   },
   computed: {
     startHour() {
@@ -259,10 +261,11 @@ export default {
           this.minusHours(whichTime)
         } else if (e.key==='ArrowRight') {
           // TODO: Focus next available field with left & right arrows
-          // console.log(this.$refs)
+          let curr = this.fields.indexOf(e.target.id)+1
+          console.log(curr)
+          // console.log(this[this.fields[curr]])
         } else if (e.key==='ArrowLeft') {
           // TODO: Focus next available field with left & right arrows
-          // console.log(this.$refs)
         }
       } else if (e.type==='click') {
         this.addHours(whichTime)
@@ -276,10 +279,8 @@ export default {
           this.minusMinutes(whichTime)
         } else if (e.key==='ArrowRight') {
           // TODO: Focus next available field with left & right arrows
-          // console.log(this.$refs)
         } else if (e.key==='ArrowLeft') {
           // TODO: Focus next available field with left & right arrows
-          console.log(this.$refs)
         }
       } else if (e.type==='click') {
         this.addMinutes(whichTime)
@@ -290,9 +291,9 @@ export default {
         if (e.key==='ArrowUp' || e.key==='ArrowDown') {
           this.switchMeridien(whichTime)
         } else if (e.key==='ArrowRight') {
-          console.log(this.$refs)
+          // console.log(this.$refs)
         } else if (e.key==='ArrowLeft') {
-          console.log(this.$refs)
+          // console.log(this.$refs.keys)
         }
       } else if (e.type==='click') {
         this.switchMeridien(whichTime)

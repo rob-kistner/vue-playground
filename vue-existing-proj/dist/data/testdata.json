@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "firstname": "Rob",
+    "lastname": "Kistner",
+    "title": "Art Director"
+  },
+  {
+    "id": 2,
+    "firstname": "Marguerite",
+    "lastname": "Koleno",
+    "title": "Financial Professional"
+  }
+]
