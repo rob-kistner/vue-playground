@@ -4,12 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VueJS Playground</title>
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.css">
-  <link rel="stylesheet" href="./css/styles.css">  
-
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script defer src="./js/scripts.js"></script>
 </head>
 
@@ -18,14 +16,14 @@
   <main id="app">
 
     <navbar></navbar>
-    
-    <section class="container">
-      
+
+    <section class="container px-5">
+
       <h1>Vue Existing Project App</h1>
 
       <hr>
       <h3>Time Field Selection</h3>
-      
+
       <greeting newprop="I'm a prop" inline-template>
         <div>
           <p>First component: loading via separate js file. It's just defining the component including the template in that js file. It doesn't get rendered until main.js gets loaded so they need to be placed in order.</p>
@@ -51,19 +49,19 @@
         <div>
           <p>This shows how you can incapsulate Footprint's time calculation and start/end times into a single component</p>
           <label for="start-time" class="label-inline">Start Time:</label>
-          <select name="start-time" id="start-time" 
-            ref="startTime" 
-            class="select" 
+          <select name="start-time" id="start-time"
+            ref="startTime"
+            class="select"
             v-model="startTime"
             >
             <option v-for="time in times" :key="time.val" :value="time.val">
               {{time.label}}
             </option>
           </select>
-          <label for="end-time" class="label-inline">End Time:</label>
-          <select name="end-time" id="end-time" 
-            ref="endTime" 
-            class="select" 
+          <label for="end-time" class="label-inline ml-3">End Time:</label>
+          <select name="end-time" id="end-time"
+            ref="endTime"
+            class="select"
             v-model="endTime"
             >
             <option v-for="time in times" :key="time.val" :value="time.val">
@@ -76,7 +74,7 @@
           </div>
         </div>
       </select-fields>
-    
+
     </section>
 
   </main>

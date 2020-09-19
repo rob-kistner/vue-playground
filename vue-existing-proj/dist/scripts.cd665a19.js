@@ -117,7 +117,32 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/vm-navbar.js":[function(require,module,exports) {
+})({"js/components/Greeting.js":[function(require,module,exports) {
+// template markup will be in the calling .html file
+// by adding 'inline-template' param to the component tag
+Vue.component('greeting', {
+  template: '#greeting',
+  data: function data() {
+    return {
+      myval: 'one',
+      myData: []
+    };
+  },
+  props: ['newprop'],
+  methods: {
+    doMethod: function doMethod() {
+      console.log("myval is ".concat(this.myval));
+    }
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('./data/testdata.json').then(function (res) {
+      return _this.myData = res.data;
+    });
+  }
+});
+},{}],"js/components/NavBar.js":[function(require,module,exports) {
 Vue.component('navbar', {
   template: "\n<nav>\n  <a href=\"/\">Home</a>\n  <a href=\"/forms.html\">Forms</a>\n</nav>\n  ",
   name: "navbar",
@@ -125,7 +150,7 @@ Vue.component('navbar', {
     return {};
   }
 });
-},{}],"js/vm-select-fields.js":[function(require,module,exports) {
+},{}],"js/components/SelectFields.js":[function(require,module,exports) {
 Vue.component('select-fields', {
   template: '#select-fields',
   data: function data() {
@@ -216,6 +241,45 @@ Vue.component('select-fields', {
       }, {
         label: '2:45 pm',
         val: '14:45'
+      }, {
+        label: '3:00 pm',
+        val: '15:00'
+      }, {
+        label: '3:15 pm',
+        val: '15:15'
+      }, {
+        label: '3:30 pm',
+        val: '15:30'
+      }, {
+        label: '3:45 pm',
+        val: '15:45'
+      }, {
+        label: '4:00 pm',
+        val: '16:00'
+      }, {
+        label: '4:15 pm',
+        val: '16:15'
+      }, {
+        label: '4:30 pm',
+        val: '16:30'
+      }, {
+        label: '4:45 pm',
+        val: '16:45'
+      }, {
+        label: '5:00 pm',
+        val: '17:00'
+      }, {
+        label: '5:15 pm',
+        val: '17:15'
+      }, {
+        label: '5:30 pm',
+        val: '17:30'
+      }, {
+        label: '5:45 pm',
+        val: '17:45'
+      }, {
+        label: '6:00 pm',
+        val: '18:00'
       }]
     };
   },
@@ -249,47 +313,24 @@ Vue.component('select-fields', {
     }
   }
 });
-},{}],"js/vm-main.js":[function(require,module,exports) {
-// template markup will be in the calling .html file
-// by adding 'inline-template' param to the component tag
-Vue.component('greeting', {
-  template: '#greeting',
-  data: function data() {
-    return {
-      myval: 'one',
-      myData: []
-    };
-  },
-  props: ['newprop'],
-  methods: {
-    doMethod: function doMethod() {
-      console.log("myval is ".concat(this.myval));
-    }
-  },
-  created: function created() {
-    var _this = this;
-
-    axios.get('./data/testdata.json').then(function (res) {
-      return _this.myData = res.data;
-    });
-  }
-});
+},{}],"js/main.js":[function(require,module,exports) {
 /* ----------------------------------------
   Render main app
 ---------------------------------------- */
-
 var vm = new Vue({
   el: '#app'
 });
 },{}],"js/scripts.js":[function(require,module,exports) {
 "use strict";
 
-require("./vm-navbar.js");
+require("~/js/components/Greeting.js");
 
-require("./vm-select-fields.js");
+require("~/js/components/NavBar.js");
 
-require("./vm-main.js");
-},{"./vm-navbar.js":"js/vm-navbar.js","./vm-select-fields.js":"js/vm-select-fields.js","./vm-main.js":"js/vm-main.js"}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+require("~/js/components/SelectFields.js");
+
+require("~/js/main.js");
+},{"~/js/components/Greeting.js":"js/components/Greeting.js","~/js/components/NavBar.js":"js/components/NavBar.js","~/js/components/SelectFields.js":"js/components/SelectFields.js","~/js/main.js":"js/main.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -317,7 +358,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61836" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53238" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -493,5 +534,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../../../.npm-packages/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/scripts.js"], null)
+},{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/scripts.js"], null)
 //# sourceMappingURL=/scripts.cd665a19.js.map

@@ -27,3 +27,32 @@ nav a {
   top: 2px;
   margin-left: 1rem;
 }
+
+/* tabs */
+.tabs {
+
+}
+.tab-content-wrapper {
+  transition: all 2s ease-in-out;
+  background-color: #ededed;
+}
+.tab-content {
+  display: block;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  opacity: 1;
+  transition: all 2s ease-in-out;
+}
+.tab-content-backer {
+  background-color: rgba(0,0,0,0.2);
+}
+.tab-fade-leave-to {
+  height: auto;
+  opacity: 0;
+}
+.tab-fade-enter-active {
+  transition: all 2s ease-in-out;
+}
+.tab-fade-leave-active {
+  transition: all 2s ease-in-out;
+}

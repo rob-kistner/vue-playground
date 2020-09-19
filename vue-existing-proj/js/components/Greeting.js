@@ -1,4 +1,3 @@
-
 // template markup will be in the calling .html file
 // by adding 'inline-template' param to the component tag
 Vue.component('greeting',
@@ -22,11 +21,4 @@ Vue.component('greeting',
     axios.get('./data/testdata.json')
       .then(res => this.myData = res.data)
   }
-})
-
-/* ----------------------------------------
-  Render main app
----------------------------------------- */
-const vm = new Vue({
-  el: '#app'
 })

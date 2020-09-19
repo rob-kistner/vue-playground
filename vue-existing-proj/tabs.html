@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" />
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.0/css/bulma.min.css" />
+    <link rel="stylesheet" href="http://robk-cdn.s3-website-us-east-1.amazonaws.com/css/spacing.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script defer src="./js/components/Tabs.js"></script>
+  </head>
+  <body>
+    <div id="app" class="container pt-5 px-5">
+      <tabs inline-template>
+        <div>
+          <div class="tabs is-centered">
+            <ul>
+              <li
+                class="tab-trigger"
+                :class="{'is-active': activeTab=='tab-1'}"
+                @click="activateTab('tab-1')"
+              >
+                <a href="#">Tab One Here</a>
+              </li>
+              <li
+                class="tab-trigger"
+                :class="{'is-active': activeTab=='tab-2'}"
+                @click="activateTab('tab-2')"
+              >
+                <a href="#">Two</a>
+              </li>
+              <li
+                class="tab-trigger"
+                :class="{'is-active': activeTab=='tab-3'}"
+                @click="activateTab('tab-3')"
+              >
+                <a href="#">Three</a>
+              </li>
+            </ul>
+          </div>
+          <div class="tab-content-wrapper">
+            <transition name="tab-fade">
+              <div
+                id="tab-1-content"
+                class="tab-content"
+                ref="tab-1-content"
+                v-if="activeTab == 'tab-1'"
+              >
+                <p>
+                  Nec diam interdum ultricies torquent maximus sociosqu vehicula
+                  non, dictumst ullamcorper quis magnis pharetra etiam urna sem,
+                  auctor pulvinar sed a netus penatibus et. Etiam aenean maximus
+                  eros mollis et litora lorem consectetur tincidunt scelerisque
+                  donec, nam mauris sit lobortis fringilla molestie condimentum
+                  dignissim augue laoreet.
+                </p>
+              </div>
+            </transition>
+            <div
+              id="tab-2-content"
+              class="tab-content"
+              ref="tab-2-content"
+              v-if="activeTab == 'tab-2'"
+            >
+              <p>
+                Nullam non nulla lacinia maecenas sagittis orci pellentesque
+                condimentum urna aptent sollicitudin, volutpat nisl malesuada
+                leo per molestie tempus efficitur sem nunc luctus.
+              </p>
+            </div>
+            <div
+              id="tab-3-content"
+              class="tab-content"
+              ref="tab-3-content"
+              v-if="activeTab == 'tab-3'"
+            >
+              <p>
+                Commodo facilisis luctus efficitur nunc nascetur potenti
+                hendrerit placerat tortor torquent facilisi, proin dictumst
+                montes orci vulputate auctor maximus odio pulvinar. Nisi risus
+                est nunc fermentum nascetur habitant, natoque aenean tempus mus
+                fringilla, ipsum sagittis finibus adipiscing habitasse. Hac sed
+                suscipit class finibus potenti aliquet phasellus in, auctor
+                ultricies placerat faucibus amet nascetur cursus urna, egestas
+                adipiscing viverra pretium nisl fames molestie. Et eleifend
+                porttitor egestas finibus dictum lobortis venenatis, nullam elit
+                nisl consectetur justo donec eget quisque, rutrum erat orci
+                lacus gravida vitae. Platea primis senectus commodo semper
+                rhoncus arcu id luctus vehicula ultricies erat dictumst
+                fermentum, urna netus himenaeos cursus est aptent consectetur
+                litora etiam egestas a quisque eget sit, duis massa velit
+                molestie ligula tortor volutpat at suspendisse imperdiet et hac.
+              </p>
+            </div>
+          </div>
+        </div>
+      </tabs>
+
+      <div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium
+          dignissimos tenetur quia ipsum magni expedita odio est necessitatibus
+          autem velit sequi, eaque, debitis excepturi fugit doloribus quas
+          fugiat id impedit! Hic quo iusto cum amet id, nisi consectetur,
+          consequatur odio rem deserunt esse corrupti quas? Iure ullam
+          asperiores officia esse fugiat quos quaerat, et, id saepe quasi,
+          excepturi nihil pariatur veniam! Quo, illum praesentium? Aliquid
+          expedita cum temporibus beatae ea, ut iure sapiente reprehenderit
+          accusamus voluptatem dolorem ullam eos vitae atque reiciendis
+          perferendis, qui a? Mollitia repellendus deserunt amet minima,
+          similique et facilis? Voluptates ratione consectetur natus animi
+          inventore voluptas? Voluptatem odio eaque inventore odit enim commodi
+          maiores rem quisquam vero.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
